@@ -16,7 +16,7 @@ passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                 }
             }     
         }
-          
+   }    
         stage('Login to docker & Push it') {
             steps {
                 script {
@@ -27,4 +27,3 @@ passwordVariable: 'DOCKERHUB_PASSWORD')]) {
             }
         }   
     } 
-}
