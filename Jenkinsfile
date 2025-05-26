@@ -26,5 +26,4 @@ passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                   }
             }
         }   
-<<<<<<< HEAD
     } 
