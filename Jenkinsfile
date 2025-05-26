@@ -5,10 +5,9 @@ pipeline{
             DOCKERHUB_CREDENTIALS= 'docker-hub'
             IMAGE_NAME='pyflaskapp'
             IMAGE_TAG = 'v3'
-            DOCKERHUB_USERNAME= 'onkarzadbuke'
        }
   stages {
-          stage('Docker login & Build the Image') {
+          stage('Build and Push Docker Image') {
               steps {
                 script {
                   withCredentials([usernamePassword(
@@ -21,23 +20,11 @@ pipeline{
 
                         sh "docker build -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG} ."
                         echo 'Image has been build'
+
+                        sh "docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
+                        echo 'successfully pushed Image'
                 }
             }     
         }
    }    
-        stage('docker Push it to docker hub') {
-            steps {
-                script {
-                    withCredentials([usernamePassword(
-                    credentialsId: DOCKERHUB_CREDENTIALS, 
-                    usernameVariable: 'DOCKERHUB_USERNAME')]) {
 
-                        sh "docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
-                        echo 'successfully pushed Image'
-
-                         }
-                      }        
-                  }
-              }    
-         }   
-    } 
