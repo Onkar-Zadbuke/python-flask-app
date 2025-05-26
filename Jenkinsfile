@@ -2,7 +2,7 @@ pipeline{
 
        agent any
        environment {
-            DOCKERHUB_CREDENTIALS= 'docker-hub'
+            DOCKERHUB_CREDENTIALS = 'docker-hub'
             IMAGE_NAME='pyflaskapp'
             IMAGE_TAG = 'v3'
        }
@@ -24,10 +24,9 @@ pipeline{
         stage('Login to docker & Push it') {
             steps {
                 script {
+                        
                         sh "docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}"
                         echo 'successfully logged In'
-                        sh "docker push index.docker.io/${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
-                        echo 'successfully pushed Image'
                         }        
                   }
               }    
