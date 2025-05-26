@@ -2,7 +2,7 @@ pipeline{
 
        agent any
        environment {
-            DOCKERHUB_CREDENTIALS = 'docker-hub'
+            DOCKERHUB_CREDENTIALS= 'docker-hub'
             IMAGE_NAME='pyflaskapp'
             IMAGE_TAG = 'v3'
        }
