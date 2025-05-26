@@ -27,9 +27,15 @@ pipeline{
         stage('docker Push it to docker hub') {
             steps {
                 script {
-                        sh "docker push index.docker.io/${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
+                    withCredentials([usernamePassword(
+                    credentialsId: DOCKERHUB_CREDENTIALS, 
+                    usernameVariable: 'DOCKERHUB_USERNAME')]) {
+                        
+                        sh "docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
                         echo 'successfully pushed Image'
-                        }        
+
+                         }
+                      }        
                   }
               }    
          }   
